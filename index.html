@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pareto Frontier 可视化工具</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="titles">
+      <h1 data-i18n="title">Pareto Frontier · 帕累托前沿</h1>
+      <div class="subtitle" data-i18n="description">输入成本与收益，自动计算并绘制 Pareto 前沿</div>
+    </div>
+    <div class="actions">
+      <button id="loadSample" data-i18n="loadSample">示例</button>
+      <button id="downloadTpl" data-i18n="downloadTpl">下载模板</button>
+      <button id="importBtn" data-i18n="importExcel">导入</button>
+      <input type="file" id="importFile" accept=".xlsx,.xls,.csv" style="display:none">
+      <button id="exportBtn" data-i18n="exportPng">导出 PNG</button>
+      <button id="themeToggle" data-i18n="themeLight">浅色</button>
+      <button id="langToggle" data-i18n="langLabel" style="min-width:48px;">EN</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Input panel -->
+    <section class="panel">
+      <h2>
+        <span data-i18n="inputData">数据输入</span>
+        <span class="opts">
+          <label>
+            <span class="seg-label" data-i18n="benefitDir">收益</span>
+            <select id="benefitDir">
+              <option value="max" data-i18n="benefitMax">越大越好</option>
+              <option value="min" data-i18n="benefitMin">越小越好</option>
+            </select>
+          </label>
+          <label>
+            <input type="checkbox" id="showDom" checked>
+            <span data-i18n="showDominated">被支配点</span>
+          </label>
+        </span>
+      </h2>
+
+      <div class="scroll">
+        <table class="data" id="dataTable">
+          <thead>
+            <tr>
+              <th data-i18n="headerIndex">#</th>
+              <th data-i18n="headerName">名称</th>
+              <th class="cost" data-i18n="headerCost">成本</th>
+              <th class="benefit" data-i18n="headerBenefit">收益</th>
+              <th style="width:36px;"></th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+
+      <div class="toolbar">
+        <button class="primary small" id="addRow" data-i18n="addRow">+ 添加</button>
+        <button class="danger small" id="clearAll" data-i18n="clearAll">清空</button>
+      </div>
+
+      <div class="summary">
+        <div class="stat">
+          <div class="k" data-i18n="statTotalLabel">总数</div>
+          <div class="v" id="statTotal">0</div>
+        </div>
+        <div class="stat pareto">
+          <div class="k" data-i18n="statParetoLabel">前沿</div>
+          <div class="v" id="statPareto">0</div>
+        </div>
+        <div class="stat dom">
+          <div class="k" data-i18n="statDominatedLabel">被支配</div>
+          <div class="v" id="statDom">0</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chart panel -->
+    <section class="panel">
+      <h2>
+        <span data-i18n="chartTitle">成本 — 收益 Pareto 前沿</span>
+        <span class="sub" id="chartSub">X：成本 · Y：收益</span>
+      </h2>
+      <div class="chart-wrap" id="chartWrap">
+        <svg class="chart" id="chart" viewBox="0 0 800 520" preserveAspectRatio="xMidYMid meet"></svg>
+        <div id="tooltip"></div>
+      </div>
+      <div class="legend">
+        <span class="item">
+          <span class="swatch" style="background:var(--pareto)"></span>
+          <span data-i18n="legendPareto">Pareto 前沿点</span>
+        </span>
+        <span class="item">
+          <span class="swatch" style="background:var(--dominated)"></span>
+          <span data-i18n="legendDominated">被支配点</span>
+        </span>
+        <span class="item">
+          <span class="line-swatch" style="background:var(--pareto-line)"></span>
+          <span data-i18n="legendFrontier">前沿曲线</span>
+        </span>
+        <span class="item">
+          <span class="line-swatch" style="background:repeating-linear-gradient(90deg,var(--border) 0 4px,transparent 4px 8px)"></span>
+          <span id="legendDirection" data-i18n="legendDirection">支配方向</span>
+        </span>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
