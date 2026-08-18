@@ -19,8 +19,8 @@
       <button id="importBtn" data-i18n="importExcel">导入</button>
       <input type="file" id="importFile" accept=".xlsx,.xls,.csv" style="display:none">
       <button id="exportBtn" data-i18n="exportPng">导出 PNG</button>
-      <button id="themeToggle" data-i18n="themeLight">浅色</button>
-      <button id="langToggle" data-i18n="langLabel" style="min-width:48px;">EN</button>
+      <button id="themeToggle" data-i18n-title="themeToggle" title="切换主题" style="min-width:56px;">🌙</button>
+      <button id="langToggle" data-i18n="langLabel" style="min-width:56px;">中文</button>
     </div>
   </header>
 
@@ -113,7 +113,7 @@
 
   <div class="toast" id="toast"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="vendor/xlsx.full.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

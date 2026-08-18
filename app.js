@@ -55,9 +55,8 @@
       tooltipBenefit: "收益",
       tooltipDominated: "被支配",
       tooltipPareto: "Pareto 前沿",
-      langLabel: "EN",
-      themeLight: "浅色",
-      themeDark: "深色",
+      langLabel: "中文",
+      themeToggle: "切换主题",
     },
     en: {
       title: "Pareto Frontier · Visualizer",
@@ -111,9 +110,8 @@
       tooltipBenefit: "Benefit",
       tooltipDominated: "Dominated",
       tooltipPareto: "Pareto frontier",
-      langLabel: "中",
-      themeLight: "Light",
-      themeDark: "Dark",
+      langLabel: "EN",
+      themeToggle: "Toggle theme",
     },
   };
 
@@ -180,10 +178,10 @@
   const langToggle = document.getElementById("langToggle");
   const themeToggle = document.getElementById("themeToggle");
 
-  const VW = 800, VH = 520;
+  let VW = 800, VH = 520;
   const M = { top: 30, right: 30, bottom: 56, left: 64 };
-  const PW = VW - M.left - M.right;
-  const PH = VH - M.top - M.bottom;
+  let PW = VW - M.left - M.right;
+  let PH = VH - M.top - M.bottom;
 
   let data = [];
   let benefitDir = localStorage.getItem("pareto-benefit-dir") || "max";
@@ -193,7 +191,8 @@
   let theme = localStorage.getItem("pareto-theme") || "dark";
   function applyTheme() {
     document.documentElement.setAttribute("data-theme", theme);
-    themeToggle.textContent = t(theme === "dark" ? "themeLight" : "themeDark");
+    themeToggle.textContent = theme === "dark" ? "🌙" : "☀️";
+    themeToggle.title = t("themeToggle");
   }
   themeToggle.onclick = () => {
     theme = theme === "dark" ? "light" : "dark";
@@ -632,6 +631,22 @@
     };
     reader.readAsArrayBuffer(f);
   };
+
+  /* ============ responsive chart sizing ============ */
+  function fitChart() {
+    const r = chart.getBoundingClientRect();
+    const w = Math.round(r.width);
+    const h = Math.round(r.height);
+    if (w <= 0 || h <= 0) return;
+    VW = w;
+    VH = h;
+    PW = VW - M.left - M.right;
+    PH = VH - M.top - M.bottom;
+    chart.setAttribute("viewBox", `0 0 ${VW} ${VH}`);
+    update();
+  }
+  const ro = new ResizeObserver(() => { fitChart(); });
+  ro.observe(chart);
 
   /* ============ init ============ */
   data = sampleData();
