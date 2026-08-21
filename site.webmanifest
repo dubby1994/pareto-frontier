@@ -1,0 +1,18 @@
+{
+    "name": "Pareto Frontier · 帕累托前沿可视化工具",
+    "short_name": "Pareto Frontier",
+    "description": "在线帕累托前沿可视化工具，输入成本与收益数据，自动计算并绘制 Pareto 前沿。纯前端运行，数据不上传。",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0f1419",
+    "theme_color": "#0f1419",
+    "lang": "zh-CN",
+    "icons": [
+        {
+            "src": "/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ]
+}

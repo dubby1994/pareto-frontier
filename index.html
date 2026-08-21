@@ -3,8 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pareto Frontier 可视化工具</title>
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f6f9" media="(prefers-color-scheme: light)">
+
+<title>Pareto Frontier · 帕累托前沿可视化工具 | Pareto Frontier Calculator</title>
+<meta name="description" content="在线帕累托前沿可视化工具，输入成本与收益数据，自动计算并绘制 Pareto 前沿。支持收益方向选择、被支配点显示/隐藏、统计摘要、散点图、Excel/CSV 导入、PNG 导出。纯前端运行，数据不上传，支持中英双语与深色模式。">
+<meta name="keywords" content="帕累托前沿,Pareto frontier,帕累托最优,Pareto optimal,多目标优化,multi-objective optimization,成本收益分析,scatter plot,散点图,帕累托图,Pareto chart,dominated points,前沿曲线">
+<meta name="author" content="Pareto Frontier">
+<meta name="robots" content="index, follow">
+<meta name="application-name" content="Pareto Frontier">
+<meta name="apple-mobile-web-app-title" content="Pareto Frontier">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="format-detection" content="telephone=no">
+<link rel="canonical" href="https://pareto-frontier.commontool.online/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pareto-frontier.commontool.online/">
+<meta property="og:site_name" content="Pareto Frontier">
+<meta property="og:title" content="Pareto Frontier · 帕累托前沿可视化工具">
+<meta property="og:description" content="输入成本与收益数据，自动计算并绘制 Pareto 前沿。支持收益方向选择、被支配点显示、统计摘要、Excel/CSV 导入、PNG 导出。纯前端运行，数据不上传。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:locale:alternate" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pareto Frontier · 帕累托前沿可视化工具">
+<meta name="twitter:description" content="输入成本与收益数据，自动计算并绘制 Pareto 前沿。支持收益方向选择、被支配点显示、统计摘要、Excel/CSV 导入、PNG 导出。纯前端运行，数据不上传。">
+
+<!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Pareto Frontier",
+  "alternateName": "帕累托前沿可视化工具",
+  "description": "在线帕累托前沿可视化工具，输入成本与收益数据，自动计算并绘制 Pareto 前沿。支持收益方向选择、被支配点显示/隐藏、统计摘要、散点图、Excel/CSV 导入、PNG 导出。纯前端运行，数据不上传。",
+  "url": "https://pareto-frontier.commontool.online/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (Web Browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": ["zh-CN", "en"],
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" },
+  "featureList": [
+    "帕累托前沿自动计算",
+    "成本—收益散点图与前沿曲线",
+    "收益方向选择 (越大越好 / 越小越好)",
+    "被支配点显示/隐藏切换",
+    "统计摘要 (总数 / 前沿数 / 被支配数)",
+    "支配方向标注",
+    "Excel / CSV 导入",
+    "PNG 导出",
+    "中英双语",
+    "深色/浅色主题"
+  ]
+}
+</script>
+
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -115,5 +177,10 @@
 
   <script src="vendor/xlsx.full.min.js"></script>
   <script src="app.js"></script>
+
+  <noscript>
+    <h1>Pareto Frontier · 帕累托前沿可视化工具</h1>
+    <p>Pareto Frontier 是一款在线帕累托前沿可视化工具，输入成本与收益数据，自动计算并绘制 Pareto 前沿。请启用 JavaScript 以使用该工具。</p>
+  </noscript>
 </body>
 </html>
